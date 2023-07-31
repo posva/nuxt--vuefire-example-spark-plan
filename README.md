@@ -1,63 +1,27 @@
-# Nuxt 3 Minimal Starter
+# Nuxt + VueFire Template
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+[Nuxt](https://nuxtjs.org/) template with [VueFire](https://vuefire.vuejs.org/) to get started with Firebase using the Free Spark Plan.
 
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-```
+## Cloning
 
 ## Development Server
 
-Start the development server on `http://localhost:3000`:
+If you added support for emulators, you will need to start them before starting the Nuxt development server.
+
+You need `firebase-tools` installed globally or locally first
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
+npm install -g firebase-tools
 ```
 
-## Production
+Then login to your Firebase account with `firebase login`.
 
-Build the application for production:
+Now you can start the emulators with `npm run emulators` or `firebase emulators:start`. Then start the server with `npm run dev`.
 
-```bash
-# npm
-npm run build
+## Building for Production
 
-# pnpm
-pnpm run build
+### Previewing Locally
 
-# yarn
-yarn build
-```
+### Deploying to Firebase
 
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### Automatic Deployments on GitHub

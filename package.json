@@ -6,7 +6,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "emulators": "firebase emulators:start"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -15,6 +16,8 @@
   },
   "dependencies": {
     "@firebase/app-types": "^0.9.0",
+    "@vueuse/core": "^10.3.0",
+    "@vueuse/nuxt": "^10.3.0",
     "firebase": "^10.1.0",
     "firebase-admin": "^11.10.1",
     "firebase-functions": "^4.4.1",
