@@ -29,4 +29,8 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false,
   },
+
+  routeRules: {
+    '/': { swr: true },
+  },
 })
