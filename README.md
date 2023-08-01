@@ -2,6 +2,8 @@
 
 [Nuxt](https://nuxtjs.org/) template with [VueFire](https://vuefire.vuejs.org/) to get started with [Firebase](https://firebase.google.com/) using the Free **Spark Plan**. If you are looking for the same version with SSR and Cloud Functions, check the [Blaze Plan template instead](https://github.com/posva/nuxt--vuefire-example-blaze-plan).
 
+You can check a live demo at [nuxt-vuefire-example-spark.web.app](https://nuxt-vuefire-example-spark.web.app).
+
 ![Screenshot](./assets/screenshot.png)
 
 In order to test this locally, follow all the steps in [Provisioning Firebase](#provisioning-firebase) and [Development Server](#development-server). Since this example is using most of Firebase features, there are quite a few things to do. In practice, you might only use half of them.
