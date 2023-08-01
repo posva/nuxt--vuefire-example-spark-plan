@@ -9,7 +9,7 @@
     "emulators": "firebase emulators:start"
   },
   "devDependencies": {
-    "@nuxt/devtools": "latest",
+    "@nuxt/devtools": "^0.7.4",
     "@types/node": "^18.17.1",
     "nuxt": "^3.6.5"
   },
@@ -20,7 +20,7 @@
     "firebase": "^10.1.0",
     "firebase-admin": "^11.10.1",
     "firebase-functions": "^4.4.1",
-    "nuxt-vuefire": "^0.2.12",
-    "vuefire": "^3.1.12"
+    "nuxt-vuefire": "^0.2.13",
+    "vuefire": "^3.1.13"
   }
 }
