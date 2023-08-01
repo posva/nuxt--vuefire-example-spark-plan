@@ -24,7 +24,7 @@ jobs:
       - name: Build site
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NUXT_VUEFIRE_EXAMPLE_SPARK }}
-        run: pnpm run build
+        run: pnpm run generate
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
