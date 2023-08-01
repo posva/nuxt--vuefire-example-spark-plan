@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // Having SSR allows us to use `nuxt generate`, turn it off if you don't care
   ssr: true,
@@ -66,14 +65,16 @@ export default defineNuxtConfig({
   },
 
   // since we are only using SSR for generation, we can only use a few of these rules effectively
+  // https://nuxt.com/docs/guide/concepts/rendering#hybrid-rendering
   routeRules: {
     '/': { isr: true },
-    // completely skip prerendering a page, useful for authenticated pages that require the user to be logged in to be
+    // Make some pages client only (since we have an SPA)
+    // useful for authenticated pages that require the user to be logged in to be
     // displayed
-    '/admin': { prerender: false },
-    '/users': { prerender: false },
-    '/posts/new': { prerender: false },
-    '/emoji-panel': { prerender: false },
-    '/login': { prerender: false },
+    '/admin': { ssr: false },
+    '/users': { ssr: false },
+    '/posts/new': { ssr: false },
+    '/emoji-panel': { ssr: false },
+    '/login': { ssr: false },
   },
 })
