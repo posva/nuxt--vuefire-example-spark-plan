@@ -175,8 +175,6 @@ async function createEmoji(pos: number) {
         {{ currentHover === pos ? newContent : emoji?.content }}
       </div>
     </div>
-
-    <button @click="signOut(auth)">Logout</button>
   </main>
 </template>
 
