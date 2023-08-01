@@ -13,6 +13,14 @@ export default defineNuxtConfig({
       enabled: false,
     },
     auth: true,
+
+    appCheck: {
+      provider: 'ReCaptchaV3',
+      // site key, NOT secret key
+      key: '6Ldmc3EnAAAAABDuQi-PGLBObXMOsVlXOntAX6WQ',
+      isTokenAutoRefreshEnabled: true,
+    },
+
     config: {
       apiKey: 'AIzaSyBKBqCHUpxMNjRJ8uhgOTK0wMGr9LkkFOA',
       authDomain: 'nuxt-vuefire-example-spark.firebaseapp.com',
