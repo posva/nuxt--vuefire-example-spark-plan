@@ -18,6 +18,14 @@ Then login to your Firebase account with `firebase login`.
 
 Now you can start the emulators with `npm run emulators` or `firebase emulators:start`. Then start the server with `npm run dev`.
 
+### Debugging
+
+You can activate VueFire logs with:
+
+```bash
+CONSOLA_LEVEL=5 npm run dev
+```
+
 ## Building for Production
 
 ### Previewing Locally
