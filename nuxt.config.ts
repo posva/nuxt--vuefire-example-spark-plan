@@ -3,8 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   nitro: {
-    // TODO: once the new preset is published
-    preset: 'firebase',
+    // NOTE: we don't want to use the firebase preset because this is a static website and the firebase preset is for SSR
   },
 
   modules: ['nuxt-vuefire'],
