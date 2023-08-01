@@ -1,16 +1,44 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  // Having SSR allows us to use `nuxt generate`, turn it off if you don't care
+  ssr: true,
   devtools: { enabled: true },
+
+  app: {
+    head: {
+      title: 'Nuxt + VueFire Spark Plan Example',
+      link: [
+        {
+          href: 'https://cdn.jsdelivr.net/npm/water.css@2/out/water.css',
+          rel: 'stylesheet',
+        },
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: '/vuefire.svg',
+        },
+      ],
+    },
+  },
+
+  css: ['~/assets/style.css'],
 
   nitro: {
     // NOTE: we don't want to use the firebase preset because this is a static website and the firebase preset is for SSR
+    preset: 'node', // the default
   },
 
-  modules: ['nuxt-vuefire'],
+  modules: ['nuxt-vuefire', '@vueuse/nuxt'],
 
   vuefire: {
     emulators: {
-      enabled: false,
+      // uncomment this line to run the application in production mode without emulators during dev
+      // enabled: false,
+      auth: {
+        options: {
+          disableWarnings: true,
+        },
+      },
     },
     auth: true,
 
@@ -37,7 +65,15 @@ export default defineNuxtConfig({
     payloadExtraction: false,
   },
 
+  // since we are only using SSR for generation, we can only use a few of these rules effectively
   routeRules: {
-    '/': { swr: true },
+    '/': { isr: true },
+    // completely skip prerendering a page, useful for authenticated pages that require the user to be logged in to be
+    // displayed
+    '/admin': { prerender: false },
+    '/users': { prerender: false },
+    '/posts/new': { prerender: false },
+    '/emoji-panel': { prerender: false },
+    '/login': { prerender: false },
   },
 })
