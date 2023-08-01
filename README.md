@@ -4,6 +4,8 @@
 
 ## Cloning
 
+Always deploy once from the CLI as it might prompt you to create some roles.
+
 ## Development Server
 
 If you added support for emulators, you will need to start them before starting the Nuxt development server.
