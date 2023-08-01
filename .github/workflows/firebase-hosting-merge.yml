@@ -1,7 +1,6 @@
 # From https://github.com/marketplace/actions/deploy-to-firebase-hosting
 
 name: Deploy to Firebase Hosting on merge
-
 on:
   push:
     branches:
@@ -23,7 +22,9 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build site
-        run: pnpm run generate
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NUXT_VUEFIRE_EXAMPLE_SPARK }}
+        run: pnpm run build
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
