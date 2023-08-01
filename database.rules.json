@@ -1,6 +1,14 @@
 {
   "rules": {
-    ".read": "now < 1693346400000",  // 2023-8-30
-    ".write": "now < 1693346400000",  // 2023-8-30
+    ".read": "true",
+    ".write": false,
+
+    "todos": {
+      ".indexOn": ["finished", "uid", "updated"],
+      "$todo_id": {
+        ".read": true,
+        ".write": true
+      }
+    }
   }
 }

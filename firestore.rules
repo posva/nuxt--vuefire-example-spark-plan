@@ -1,19 +1,121 @@
 rules_version = '2';
-
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // This rule allows anyone with your Firestore database reference to view, edit,
-    // and delete all data in your Firestore database. It is useful for getting
-    // started, but it is configured to expire after 30 days because it
-    // leaves your app open to attackers. At that time, all client
-    // requests to your Firestore database will be denied.
-    //
-    // Make sure to write security rules for your app before that time, or else
-    // all client requests to your Firestore database will be denied until you Update
-    // your rules
+		match /users/{userId} {
+      allow read: if request.auth != null;
+
+      allow create: if request.auth.uid == userId
+        && request.resource.data.keys().hasAll(['displayName', 'photoURL', 'joinedAt', 'lastLogin'])
+        && request.resource.data.photoURL is string
+        && request.resource.data.displayName is string
+        && request.resource.data.joinedAt == request.time
+        && request.resource.data.lastLogin == request.time
+			;
+
+      allow update: if request.auth.uid == userId
+        && request.resource.data
+          .diff(resource.data)
+          .affectedKeys()
+          .hasOnly(['displayName', 'photoURL', 'lastLogin'])
+        && request.resource.data.photoURL is string
+        && request.resource.data.displayName is string
+        && request.resource.data.lastLogin == request.time
+      ;
+
+      allow delete: if false;
+    }
+
+    match /users/{userId}/notes/{noteId} {
+      // only the current user can read their own
+      allow read: if request.auth.uid == userId;
+      allow create: if request.auth.uid == userId
+        && request.resource.data.size() == 2
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.content is string
+        && request.resource.data.content.size() > 0
+        && request.resource.data.content.size() <= 512;
+      allow delete: if false;
+    }
+
+		match /pixels/{userId} {
+      allow read;
+      allow create: if request.auth.uid == userId
+        && ['displayName', 'photoURL', 'createdAt', 'content', 'pos', 'revision']
+          .toSet()
+          .difference(request.resource.data.keys().toSet())
+          .size() == 0
+        && request.resource.data.photoURL is string
+        && request.resource.data.displayName is string
+        && request.resource.data.pos is int
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.revision == 1
+        && request.resource.data.content is string
+        && request.resource.data.content.size() <= 2
+      ;
+
+      allow update: if request.auth.uid == userId
+        && ['createdAt', 'content', 'pos', 'revision']
+          .toSet()
+          .difference(request.resource.data.keys().toSet())
+          .size() == 0
+        && request.resource.data.createdAt == request.time
+        // only allow one write every 5 seconds
+        && request.time > resource.data.createdAt + duration.value(5, 's')
+        && request.resource.data.pos is int
+        // only allow increments
+        && request.resource.data.revision == resource.data.revision + 1
+        && request.resource.data.content is string
+        && request.resource.data.content.size() <= 2
+      ;
+
+      allow delete: if request.auth.uid == userId;
+    }
+
+    match /emojis/{userId} {
+      allow read;
+      allow delete: if false;
+
+      allow create: if request.auth.uid == userId
+        && ['displayName', 'photoURL', 'createdAt', 'content', 'pos', 'revision']
+          .toSet()
+          .difference(request.resource.data.keys().toSet())
+          .size() == 0
+        && request.resource.data.photoURL is string
+        && request.resource.data.displayName is string
+        && request.resource.data.pos is int
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.revision == 1
+        && request.resource.data.content is string
+        && request.resource.data.content.size() <= 2
+      ;
+
+      allow update: if request.auth.uid == userId
+        && ['createdAt', 'content', 'pos', 'revision']
+          .toSet()
+          .difference(request.resource.data.keys().toSet())
+          .size() == 0
+        && request.resource.data.createdAt == request.time
+        // only allow one write every 5 seconds
+        && request.time > resource.data.createdAt + duration.value(5, 's')
+        && request.resource.data.pos is int
+        // only allow increments
+        && request.resource.data.revision == resource.data.revision + 1
+        && request.resource.data.content is string
+        && request.resource.data.content.size() <= 2
+      ;
+    }
+
+
+    match /count/{day} {
+    	allow read;
+      // only allow writing { when: now timestamp; n: int }
+      allow write: if request.resource.data.size() == 2 && request.resource.data.when is timestamp && request.resource.data.n is int;
+    }
+
+    // forbid everything else
     match /{document=**} {
-      allow read, write: if request.time < timestamp.date(2023, 8, 30);
+      allow read, write: if false;
     }
   }
 }
