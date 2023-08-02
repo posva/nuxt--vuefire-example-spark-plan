@@ -8,6 +8,20 @@ You can check a live demo at [nuxt-vuefire-example-spark.web.app](https://nuxt-v
 
 In order to test this locally, follow all the steps in [Provisioning Firebase](#provisioning-firebase) and [Development Server](#development-server). Since this example is using most of Firebase features, there are quite a few things to do. In practice, you might only use half of them.
 
+## Trying this out locally
+
+Thanks to [Firebase Emulators](https://firebase.google.com/docs/emulator-suite), you can try this template locally without even creating a Firebase project. You will need to install the [Firebase Tools CLI](https://firebase.google.com/docs/cli) with `npm i -g firebase-tools`, install dependencies with `pnpm i`, and then run in two different processes:
+
+```bash
+pnpm run emulators
+```
+
+and
+
+```bash
+pnpm run dev
+```
+
 ## Using this template
 
 It's recommended to use git to clone this template and track any changes made by the Firebase Tools CLI to revert them if needed.
@@ -56,7 +70,6 @@ You can now clean up any files you don't need, for example, if you are not using
 > If you don't want to use a Service Account file, **you will have to turn off SSR in `nuxt.config.ts` with `ssr: false`** and delete the line `GOOGLE_APPLICATION_CREDENTIALS=./service-account.json` from `.env`.
 
 For some Nuxt features to work like server side rendering, you will need to create a service account. You can do this from the _Project Settings_, _Service Accounts_ tab. Then, download the JSON file and save it as `service-account.json` at the root of your project.
-
 
 ### App Check
 
@@ -115,7 +128,7 @@ VUEFIRE_APPCHECK_DEBUGN=true pnpm run generate
 ```
 
 If you want to preview with emulators, you can force them in a production build with:
-  
+
 ```bash
 VUEFIRE_EMULATORS=true pnpm run generate
 ```
