@@ -9,19 +9,19 @@
     "emulators": "firebase emulators:start"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.8.0",
+    "@nuxt/devtools": "^0.8.3",
     "@types/node": "^18.17.5",
-    "nuxt": "^3.6.5"
+    "nuxt": "^3.7.3"
   },
   "dependencies": {
     "@firebase/app-types": "^0.9.0",
-    "@vueuse/core": "^10.3.0",
-    "@vueuse/nuxt": "^10.3.0",
+    "@vueuse/core": "^10.4.1",
+    "@vueuse/nuxt": "^10.4.1",
     "firebase": "^10.1.0",
     "firebase-admin": "^11.10.1",
     "firebase-functions": "^4.4.1",
-    "nuxt-vuefire": "^0.2.17",
-    "vuefire": "^3.1.15"
+    "nuxt-vuefire": "^0.3.0",
+    "vuefire": "^3.1.17"
   },
   "pnpm": {
     "overrides": {
