@@ -3,6 +3,17 @@ export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: true },
 
+  hooks: {
+    close: (nuxt) => {
+      // FIXME: workaround for https://github.com/nuxt/cli/issues/193
+      if (!nuxt.options._prepare) {
+        setTimeout(() => {
+          process.exit(0)
+        }, 500)
+      }
+    },
+  },
+
   app: {
     head: {
       title: 'Nuxt + VueFire Spark Plan Example',
