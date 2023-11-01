@@ -6,7 +6,7 @@ import {
   Timestamp,
   setDoc,
   updateDoc,
-  DocumentData,
+  type DocumentData,
 } from 'firebase/firestore'
 import { computed } from 'vue'
 import { useDocument, useFirestore } from 'vuefire'

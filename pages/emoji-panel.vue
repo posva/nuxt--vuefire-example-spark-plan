@@ -12,7 +12,7 @@ import {
 } from 'firebase/firestore'
 import { signOut } from 'firebase/auth'
 import { getRandomEmoji } from '@/assets/emojis'
-import { VueFirestoreDocumentData } from 'vuefire'
+import { type VueFirestoreDocumentData } from 'vuefire'
 
 definePageMeta({
   linkTitle: 'Emoji Panel',
