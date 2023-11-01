@@ -43,7 +43,7 @@ export default defineNuxtConfig({
   vuefire: {
     emulators: {
       // uncomment this line to run the application in production mode without emulators during dev
-      enabled: false,
+      // enabled: false,
       auth: {
         options: {
           disableWarnings: true,
